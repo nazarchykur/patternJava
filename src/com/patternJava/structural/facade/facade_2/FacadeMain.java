@@ -2,12 +2,15 @@ package com.patternJava.structural.facade.facade_2;
 
 public class FacadeMain {
     public static void main(String[] args) {
+        // without facade  we must create and call methods in needed order
 //        Power power = new Power();
 //        power.on();
 //        DVDRom dvdRom = new DVDRom();
 //        dvdRom.load();
 //        HDD hdd = new HDD();
 //        hdd.copyFromDVD(dvdRom);
+
+        // with facade we just create this instance of facade and call its method
         ComputerFacade computer = new ComputerFacade();
         computer.copy();
     }

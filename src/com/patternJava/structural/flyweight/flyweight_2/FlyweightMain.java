@@ -27,27 +27,21 @@ public class FlyweightMain {
 interface Shape {
     void draw(int x, int y);
 }
-
 class Point implements Shape {
-
     @Override
     public void draw(int x, int y) {
         System.out.println("(" + x + "," + y + ") : draw point");
     }
 }
-
 class Circle implements Shape {
     private int r = 5;
-
     @Override
     public void draw(int x, int y) {
         System.out.println("(" + x + "," + y + ") : draw circle with radius " + r);
     }
 }
-
 class Square implements Shape {
     private int side = 10;
-
     @Override
     public void draw(int x, int y) {
         System.out.println("(" + x + "," + y + ") : draw square with side " + side);
