@@ -46,11 +46,27 @@
 -----------------
 1) Створіть інтерфейс відвідувача й оголосіть у ньому методи «відвідування» для кожного класу елемента, який існує в програмі.
 
+    наприклад
+        визначаємо інтерфейс візітора, який має перелік перегруженого метода для роботи з кожним типом елемента
+        interface ComputerPartVisitor {
+            void visit(Computer computer);
+            void visit(Mouse mouse);
+            void visit(Keyboard keyboard);
+            void visit(Monitor monitor);
+        }
+
 2) Опишіть інтерфейс елементів. Якщо ви працюєте з уже існуючими класами, оголосіть абстрактний метод прийняття 
      відвідувачів у базовому класі ієрархії елементів.
+     
+     accept(Visitor visitor);
 
 3) Реалізуйте методи прийняття в усіх конкретних елементах. Вони повинні переадресовувати виклики тому методу 
      відвідувача, в якому тип параметра збігається з поточним класом елемента.
+     
+         @Override
+         public int accept(Visitor visitor) {
+             return visitor.visit(this);
+         }
 
 4) Ієрархія елементів повинна знати тільки про загальний інтерфейс відвідувачів. З іншого боку, відвідувачі 
     знатимуть про всі класи елементів.
@@ -59,3 +75,36 @@
      наявними типами елементів, реалізувавши всі методи інтерфейсу відвідувачів.
 
 6) Клієнт створюватиме об’єкти відвідувачів, а потім передаватиме їх елементам через метод прийняття.     
+
+
+
+========================================================================================================================
+
+Visitor pattern is used when we have to perform an operation on a group of similar kind of Objects. 
+   With the help of visitor pattern, we can move the operational logic from the objects to another class.
+
+For example, think of a Shopping cart where we can add different type of items (Elements). 
+When we click on checkout button, it calculates the total amount to be paid. Now we can have the calculation logic in 
+item classes or we can move out this logic to another class using visitor pattern.
+
+Notice that accept method takes Visitor argument.
+
+Notice the implementation of accept() method in concrete classes, its calling visit() method of Visitor and passing itself as argument.
+
+We have visit() method for different type of items in Visitor interface that will be implemented by concrete visitor class.
+
+========================================================================================================================
+
+Visitor Pattern Benefits
+-------------------------
+The benefit of this pattern is that if the logic of operation changes, then we need to make change only in the visitor 
+   implementation rather than doing it in all the item classes.
+
+Another benefit is that adding a new item to the system is easy, it will require change only in visitor interface and implementation and existing item classes will not be affected.
+
+Visitor Pattern Limitations
+----------------------------
+The drawback of visitor pattern is that we should know the return type of visit() methods at the time of designing 
+   otherwise we will have to change the interface and all of its implementations.  
+
+Another drawback is that if there are too many implementations of visitor interface, it makes it hard to extend.
