@@ -1,4 +1,4 @@
-package com.patternJava.behavioral.command.command_2.command_3;
+package com.patternJava.behavioral.command.command_3;
 
 
 /*
