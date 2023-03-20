@@ -1,5 +1,9 @@
 package com.patternJava.behavioral.visitor.visitor_4;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
 Visitor : This is an interface or an abstract class used to declare the visit operations for all the types of visitable classes.
 
