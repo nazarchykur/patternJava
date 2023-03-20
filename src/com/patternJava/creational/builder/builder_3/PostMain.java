@@ -34,6 +34,5 @@ public class PostMain {
 
         System.out.println("newPost = " + newPost);
         // newPost = Post{title='blog-post-builder', author='javadev', datePosed='20/03', numberOfWords=100, numberOfCharacters=1000}
-        
     }
 }
