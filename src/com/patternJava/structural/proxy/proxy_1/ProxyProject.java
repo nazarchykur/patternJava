@@ -1,6 +1,6 @@
 package com.patternJava.structural.proxy.proxy_1;
 
-public class ProxyProject implements Project{
+public class ProxyProject implements Project {
     private String url;
     private RealProject realProject;
 
@@ -14,6 +14,5 @@ public class ProxyProject implements Project{
             realProject = new RealProject(url);
         }
         realProject.run();
-
     }
 }
