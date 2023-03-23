@@ -3,94 +3,82 @@ package com.patternJava.behavioral.observer.observer_2;
 import java.util.ArrayList;
 import java.util.List;
 
-interface Subject {
-    void attach(Observer o);
-    void detach(Observer o);
-    void notifyUpdate(Message m);
+
+public class ObserverMain {
+    public static void main(String[] args) {
+        Blog blog = new Blog();
+        Reader reader1 = new Reader("Alice");
+        Reader reader2 = new Reader("Bob");
+        Reader reader3 = new Reader("Charlie");
+
+        blog.subscribe(reader1);
+        blog.subscribe(reader2);
+        blog.subscribe(reader3);
+
+        blog.postMessage("Hello world!");
+
+        blog.unsubscribe(reader2);
+
+        blog.postMessage("How are you doing?");
+
+        blog.subscribe(reader2);
+
+        blog.postMessage("Just a quick update.");
+    }
 }
 
-class MessagePublisher implements Subject {
-    private List<Observer> observers = new ArrayList<>();
+// Subject interface
+interface Publisher {
+    void subscribe(Subscriber subscriber);
 
-    @Override
-    public void attach(Observer o) {
-        observers.add(o);
+    void unsubscribe(Subscriber subscriber);
+
+    void notifySubscribers(String message);
+}
+
+// Observer interface
+interface Subscriber {
+    void update(String message);
+}
+
+// Concrete implementation of the Subject interface
+class Blog implements Publisher {
+    private List<Subscriber> subscribers = new ArrayList<>();
+    private String message;
+
+    public void postMessage(String message) {
+        this.message = message;
+        notifySubscribers(message);
     }
 
     @Override
-    public void detach(Observer o) {
-        observers.remove(o);
+    public void subscribe(Subscriber subscriber) {
+        subscribers.add(subscriber);
     }
 
     @Override
-    public void notifyUpdate(Message m) {
-        for(Observer o: observers) {
-            o.update(m);
+    public void unsubscribe(Subscriber subscriber) {
+        subscribers.remove(subscriber);
+    }
+
+    @Override
+    public void notifySubscribers(String message) {
+        for (Subscriber subscriber : subscribers) {
+            subscriber.update(message);
         }
     }
 }
 
-interface Observer {
-    void update(Message m);
-}
+// Concrete implementation of the Observer interface
+class Reader implements Subscriber {
+    private String name;
 
-class MessageSubscriberOne implements Observer {
+    public Reader(String name) {
+        this.name = name;
+    }
+
     @Override
-    public void update(Message m) {
-        System.out.println("MessageSubscriberOne :: " + m.getMessageContent());
-    }
-}
-
-class MessageSubscriberTwo implements Observer {
-    @Override
-    public void update(Message m) {
-        System.out.println("MessageSubscriberTwo :: " + m.getMessageContent());
-    }
-}
-
-class MessageSubscriberThree implements Observer {
-    @Override
-    public void update(Message m) {
-        System.out.println("MessageSubscriberThree :: " + m.getMessageContent());
-    }
-}
-
-class Message {
-    final String messageContent;
-
-    public Message (String m) {
-        this.messageContent = m;
-    }
-
-    public String getMessageContent() {
-        return messageContent;
-    }
-}
-
-public class ObserverMain {
-    public static void main(String[] args) {
-        Observer s1 = new MessageSubscriberOne();
-        Observer s2 = new MessageSubscriberTwo();
-        Observer s3 = new MessageSubscriberThree();
-
-        MessagePublisher p = new MessagePublisher();
-
-        p.attach(s1);
-        p.attach(s2);
-
-        p.notifyUpdate(new Message("First Message"));   //s1 and s2 will receive the update
-
-        //MessageSubscriberOne :: First Message
-        //MessageSubscriberTwo :: First Message
-        
-        System.out.println("------------------------------------------");
-
-        p.detach(s1);
-        p.attach(s3);
-
-        p.notifyUpdate(new Message("Second Message")); //s2 and s3 will receive the update
-        
-        //MessageSubscriberTwo :: Second Message
-        //MessageSubscriberThree :: Second Message
+    public void update(String message) {
+        System.out.println(name + " received a new message: " + message);
     }
 }

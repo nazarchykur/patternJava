@@ -8,7 +8,7 @@ import java.util.List;
 class Subject {
     private List<Observer> observers = new ArrayList<>();
     private int state;
-    
+
     public int getState() {
         return state;
     }
@@ -18,48 +18,52 @@ class Subject {
         notifyAllObservers();
     }
 
-    public void attach(Observer observer){
+    public void attach(Observer observer) {
         observers.add(observer);
     }
-    
-    public void notifyAllObservers(){
+
+    public void notifyAllObservers() {
         for (Observer observer : observers) {
             observer.update();
         }
     }
 
 }
+
 //Step 2
 //Create Observer class.
 abstract class Observer {
     protected Subject subject;
+
     public abstract void update();
 }
+
 //Step 3
 //Create concrete observer classes
-class BinaryObserver extends Observer{
+class BinaryObserver extends Observer {
 
-    public BinaryObserver(Subject subject){
+    public BinaryObserver(Subject subject) {
         this.subject = subject;
         this.subject.attach(this);
     }
 
     @Override
     public void update() {
-        System.out.println( "Binary String: " + Integer.toBinaryString( subject.getState() ) );
+        System.out.println("Binary String: " + Integer.toBinaryString(subject.getState()));
     }
 
 }
-class HexObserver extends Observer{
 
-    public HexObserver(Subject subject){
+class HexObserver extends Observer {
+
+    public HexObserver(Subject subject) {
         this.subject = subject;
         this.subject.attach(this);
     }
 
     @Override
     public void update() {
-        System.out.println( "Hex String: " + Integer.toHexString( subject.getState() ).toUpperCase() );
+        System.out.println("Hex String: " + Integer.toHexString(subject.getState()).toUpperCase());
     }
 
 }
