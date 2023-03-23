@@ -1,7 +1,8 @@
 package com.patternJava.behavioral.iterator.iterator_1;
 
-public class JavaDeveloper implements Collection{
+public class JavaDeveloper implements Collection {
     private String name;
+    private String[] skills;
 
     public JavaDeveloper(String name, String[] skills) {
         this.name = name;
@@ -24,16 +25,14 @@ public class JavaDeveloper implements Collection{
         this.skills = skills;
     }
 
-    private String[] skills;
-
-
     @Override
     public Iterator getIterator() {
         return new SkillsIterator();
     }
 
-    private class SkillsIterator implements Iterator{
+    private class SkillsIterator implements Iterator {
         int index;
+
         @Override
         public boolean hasNext() {
             return index < skills.length;

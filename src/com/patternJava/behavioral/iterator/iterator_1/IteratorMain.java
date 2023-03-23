@@ -32,9 +32,10 @@ public class IteratorMain {
         Iterator iterator = javaDeveloper.getIterator();
         System.out.println("Developer: " + javaDeveloper.getName());
         System.out.println("Skills: ");
+        
         while (iterator.hasNext()) {
             System.out.print(iterator.next().toString());
-            if ( iterator.hasNext() ) {
+            if (iterator.hasNext()) {
                 System.out.print(", ");
             }
 

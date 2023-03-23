@@ -8,12 +8,12 @@ public class IteratorMain {
 
         1) так як ми плануємо пробігатися по цій колекції, то імплемеуємо Aggregate,
            який поверне нам ітератор через метод getIterator, а саме конкретний наш TaskIterator
-        2) ток як ми знаємо, що потрібен ітератор, то створюємо внутрішній клас TaskIterator
+        2) так як ми знаємо, що потрібен ітератор, то створюємо внутрішній клас TaskIterator
            у нашому класі ConcreteAggregate, який імплементує Iterator з двома методами
            (boolean hasNext(); Object next(); )
         3) тепер створюючи клас, який має колекцію елементів, ми створюємо
            Iterator iterator, якому прокидаємо наш ітератор з цієї колекції
-           concreteAggregate.getIterator();
+               concreteAggregate.getIterator();
            і через цикл while() перевіряємо чи є елемент у масиві, і беремо цей елемент
 
 
@@ -21,13 +21,14 @@ public class IteratorMain {
         ConcreteAggregate concreteAggregate = new ConcreteAggregate();
         Iterator iterator = concreteAggregate.getIterator();
         while (iterator.hasNext()) {
-            System.out.println( (String)iterator.next());
+            System.out.println((String) iterator.next());
         }
     }
 }
 
 interface Iterator {
     boolean hasNext();
+
     Object next();
 }
 
