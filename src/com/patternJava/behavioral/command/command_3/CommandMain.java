@@ -59,8 +59,8 @@ img_2 - схема
     1. Визначте командний інтерфейс із сигнатурою методу, наприклад execute(). 
         У наведеному прикладі ActionListenerCommand — це командний інтерфейс, який має один метод execute().
         
-    2. Створіть один або кілька похідних класів, 
-        які інкапсулюють деяку підмножину з наступного: об’єкт «receiver» («одержувач»), метод для виклику, аргументи для передачі. 
+    2. Створіть один або кілька похідних класів, які інкапсулюють деяку підмножину з наступного: об’єкт «receiver» 
+        («одержувач»), метод для виклику, аргументи для передачі. 
         
         У наведеному вище прикладі ActionOpen і ActionSave є конкретними класами команд, 
         які створюють зв’язок між одержувачем і дією (the receiver and the action). 
@@ -95,7 +95,6 @@ img_2 - схема
  */
 
 
-
 // Client class:
 public class CommandMain {
     public static void main(String[] args) {
@@ -117,10 +116,11 @@ interface ActionListenerCommand {
 
 // Receiver class:
 class Document {
-    public void open(){
+    public void open() {
         System.out.println("Document Opened");
     }
-    public void save(){
+
+    public void save() {
         System.out.println("Document Saved");
     }
 }
@@ -132,6 +132,7 @@ class ActionOpen implements ActionListenerCommand {
     public ActionOpen(Document doc) {
         this.doc = doc;
     }
+
     @Override
     public void execute() {
         doc.open();
@@ -145,6 +146,7 @@ class ActionSave implements ActionListenerCommand {
     public ActionSave(Document doc) {
         this.doc = doc;
     }
+
     @Override
     public void execute() {
         doc.save();
@@ -160,10 +162,12 @@ class MenuOptions {
         this.openCommand = open;
         this.saveCommand = save;
     }
-    public void clickOpen(){
+
+    public void clickOpen() {
         openCommand.execute();
     }
-    public void clickSave(){
+
+    public void clickSave() {
         saveCommand.execute();
     }
 }

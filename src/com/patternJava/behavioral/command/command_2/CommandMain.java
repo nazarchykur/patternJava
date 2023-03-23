@@ -4,8 +4,8 @@ public class CommandMain {
     public static void main(String[] args) {
         Computer computer = new Computer();
         User user = new User(new StartCommand(computer),
-                            new StopCommand(computer),
-                            new ResetCommand(computer) );
+                new StopCommand(computer),
+                new ResetCommand(computer));
 
         user.startComputer();
         user.stopComputer();
@@ -14,7 +14,7 @@ public class CommandMain {
 }
 
 // Receiver
-class Computer{
+class Computer {
     void start() {
         System.out.println("Start");
     }
@@ -27,11 +27,13 @@ class Computer{
         System.out.println("Reset");
     }
 }
-interface Command{
+
+interface Command {
     void execute();
 }
+
 // concrete command
-class StartCommand implements Command{
+class StartCommand implements Command {
     Computer computer;
 
     public StartCommand(Computer computer) {
@@ -43,7 +45,8 @@ class StartCommand implements Command{
         computer.start();
     }
 }
-class StopCommand implements Command{
+
+class StopCommand implements Command {
     Computer computer;
 
     public StopCommand(Computer computer) {
@@ -55,7 +58,8 @@ class StopCommand implements Command{
         computer.stop();
     }
 }
-class ResetCommand implements Command{
+
+class ResetCommand implements Command {
     Computer computer;
 
     public ResetCommand(Computer computer) {
@@ -67,8 +71,9 @@ class ResetCommand implements Command{
         computer.reset();
     }
 }
+
 // Invoker
-class User{
+class User {
     Command start;
     Command stop;
     Command reset;

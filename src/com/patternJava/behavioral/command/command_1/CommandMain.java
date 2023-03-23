@@ -31,10 +31,10 @@ public class CommandMain {
                                             new SelectCommand(database),
                                             new DeleteCommand(database) );
 
-        developer.insertResord();
-        developer.updateResord();
-        developer.selectResord();
-        developer.deleteResord();
+        developer.insertRecord();
+        developer.updateRecord();
+        developer.selectRecord();
+        developer.deleteRecord();
 
 
     }
