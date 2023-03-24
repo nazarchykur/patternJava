@@ -18,7 +18,7 @@ public class StrategyMain {
         Context context = new Context(new OperationAdd());
         System.out.println("context.executeOperation(5, 3) = " + context.executeOperation(5, 3)); // context.executeOperation(5, 3) = 8
 
-        context = new Context(new OperationSubstract());
+        context = new Context(new OperationSubtract());
         System.out.println("context.executeOperation(5, 3) = " + context.executeOperation(5, 3)); // context.executeOperation(5, 3) = 2
     }
 }
