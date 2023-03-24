@@ -1,4 +1,5 @@
 package com.patternJava.behavioral.state.state_4;
+
 /*
 
 1) і State має два стани : open/close = дві реалізації
@@ -38,6 +39,7 @@ class Door {
     public void setState(State state) {
         this.state = state;
     }
+
     public void changeState() {
         if (state instanceof Open) {
             setState(new Close());
@@ -50,6 +52,7 @@ class Door {
         state.openClose();
     }
 }
+
 interface State {
     void openClose();
 }

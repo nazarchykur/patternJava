@@ -6,7 +6,7 @@ public class Radio {
     public void setStation(Station station) {
         this.station = station;
     }
-    
+
     public void nextStation() {
         if (station instanceof UAStation) {
             setStation(new HitFMStation());
@@ -20,6 +20,4 @@ public class Radio {
     public void play() {
         station.play();
     }
-    
-    
 }
