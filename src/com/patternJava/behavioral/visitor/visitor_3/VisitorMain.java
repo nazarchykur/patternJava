@@ -7,7 +7,7 @@ interface ComputerPart {
 }
 
 // 2) конкретна реалізація = елемент 
-// черз метод accept(Visitor visitor) передаємо візітору сику на себе 
+// через метод accept(Visitor visitor) передаємо візітору силку на себе 
 class Keyboard implements ComputerPart {
     @Override
     public void accept(ComputerPartVisitor computerPartVisitor) {

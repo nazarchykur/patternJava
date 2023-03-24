@@ -1,9 +1,5 @@
 package com.patternJava.behavioral.visitor.visitor_4;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /*
 Visitor : This is an interface or an abstract class used to declare the visit operations for all the types of visitable classes.
 
@@ -84,6 +80,7 @@ class Fruit implements ItemElement {
 
 interface ShoppingCartVisitor {
     int visit(Book book);
+
     int visit(Fruit fruit);
 }
 
@@ -95,11 +92,12 @@ class ShoppingCartVisitorImpl implements ShoppingCartVisitor {
         //apply 5$ discount if book price is greater than 50
         if (book.getPrice() > 50) {
             cost = book.getPrice() - 5;
-        } else
+        } else {
             cost = book.getPrice();
+        }
 
-        System.out.println("Book ISBN::" + book.getIsbnNumber() + " cost =" + cost);
-        
+        System.out.println("Book ISBN::" + book.getIsbnNumber() + " cost = " + cost);
+
         return cost;
     }
 
@@ -107,39 +105,38 @@ class ShoppingCartVisitorImpl implements ShoppingCartVisitor {
     public int visit(Fruit fruit) {
         int cost = fruit.getPricePerKg() * fruit.getWeight();
         System.out.println(fruit.getName() + " cost = " + cost);
-        
+
         return cost;
     }
-
 }
 
 public class VisitorMain {
     public static void main(String[] args) {
-        ItemElement[] items = new ItemElement[]{
+        ItemElement[] items = new ItemElement[] {
                 new Book(20, "1234"),
-                new Book(100, "5678"), 
+                new Book(100, "5678"),
                 new Fruit(10, 2, "Banana"),
                 new Fruit(5, 5, "Apple")};
 
         int total = calculatePrice(items);
-        System.out.println("Total Cost = "+total);
+        System.out.println("Total Cost = " + total);
         
         /*
-            Book ISBN::1234 cost =20
-            Book ISBN::5678 cost =95
+            Book ISBN::1234 cost = 20
+            Book ISBN::5678 cost = 95
             Banana cost = 20
             Apple cost = 25
             Total Cost = 160
          */
     }
 
-    private static int calculatePrice(ItemElement[] items){
+    private static int calculatePrice(ItemElement[] items) {
         ShoppingCartVisitor visitor = new ShoppingCartVisitorImpl();
-        int sum=0;
-        for(ItemElement item : items){
+        int sum = 0;
+        for (ItemElement item : items) {
             sum = sum + item.accept(visitor);
         }
-        
+
         return sum;
     }
 }

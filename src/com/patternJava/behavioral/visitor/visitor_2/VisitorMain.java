@@ -59,7 +59,7 @@ public class VisitorMain {
             review body of car...
             review state of car...
          */
-        
+
         System.out.println("===== print result ======");
         car.accept(printInfo);
         /*
@@ -68,9 +68,8 @@ public class VisitorMain {
             Print info about car...
          */
     }
-    
-}
 
+}
 
 
 interface Element {
@@ -111,7 +110,9 @@ class Car implements Element {
 
 interface Visitor {
     void visit(EngineElement engine);
+
     void visit(BodyElement body);
+
     void visit(Car car);
 }
 

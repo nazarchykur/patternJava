@@ -7,14 +7,14 @@ ProjectElement - це інтерфейс, який має 3 реалізації
  - Test
  
  beWritten(Developer dev) - метод у ProjectElement, який для кожного елементу цієї структури працює по різному
-    взалежності який developer переданий = а щоб знати з яким типом елементу ми працюємо, цей метод передає свій тип елементу 
+    в залежності який developer переданий = а щоб знати з яким типом елементу ми працюємо, цей метод передає свій тип елементу 
     
     @Override
     public void beWritten(Developer developer) {
         developer.create(this);
     }
     
-2)  інтеріейс Developer має методи, кожен з яких окремо працює з кожним типом елементом структури
+2)  інтерфейс Developer має методи, кожен з яких окремо працює з кожним типом елементом структури
     void create(ProjectClass projectClass);
     void create(Database database);
     void create(Test test);    
@@ -25,7 +25,6 @@ ProjectElement - це інтерфейс, який має 3 реалізації
      
 3) передаючи конкретного девелопера ми знаємо, що кожен працює з кожним типом елементу структури по свому, 
    що дозволяє виконувати відповідні дії      
- 
  */
 public class VisitorMain {
     public static void main(String[] args) {
@@ -51,6 +50,5 @@ public class VisitorMain {
             Senior rewrite tests...
 
          */
-        
     }
 }
